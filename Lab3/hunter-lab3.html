@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>Lab 3 - functions</title> 
+	<script>
+		"use strict";
+		var $ = function(id) { 
+		    return document.getElementById(id); 
+		};
+		function calcFactorial(myNum) { 
+			// calculate the factorial and return that value
+			if (myNum === 0 || myNum === 1)
+				return 1;
+			for (var i = myNum - 1; i >= 1; i--)
+			{
+				myNum = myNum * i;
+			}
+			return myNum;
+		}
+		function calculate() { 
+			// get the number entered into the text box myNum
+			var myNum = document.getElementById('myNum').value;
+			// call the factorial function
+			function calcFactorial()
+			{
+                var myFactorial = calcFactorial(myNum);
+            }
+            // calculate the square of the number
+            var mySquare = Math.sqrt(myFactorial);
+            // display those values in the proper place in the HTML 
+			document.getElementById('myFactorial').value;
+			document.getElementById('mySquare').value;
+		}
+		window.onload = function() {
+		    $("goCalculate").onclick = calculate; 
+			$("myNum").focus();
+		}; 
+	</script>
+</head> 
+<body>
+	<main>
+		<h2>Enter a Number for Calculation</h1> 
+		<label for="myNum">My Number Is:</label>
+		<input type="text" id="myNum"><br>
+		<br/>
+		<!-- display the squre here -->
+		<label for="mySquare">My Number Squared:</label> 
+		<input type="text" id="mySquare"><br> 
+		<br/>
+		<!-- display the factorial here -->
+		<label for="">My Factorial</label> 
+		<input type="text" id="myFactorial"><br> 
+		<br/>
+		<label>&nbsp;</label>
+		<input type="button" id="goCalculate" value="GO"><br> 
+	</main> 
+</body>  
+</html>
