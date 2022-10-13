@@ -1,0 +1,161 @@
+<head>
+    <title>Lab 4 - Forms Processing</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">  
+    <style>
+        .blacktext {color: black;}
+        .redtext {color:red;}
+    </style> 
+     
+     
+            <script>
+                "use strict"
+                //Add all Javascript event handlers here
+                onload section{
+                    document.getElementById("mstatus").onchange=mstatusChange();
+
+                    document.getElementById("myForm").onclick=processForm();
+
+                    document.getElementById("fName").focus();
+
+
+                }
+
+
+
+                function mstatusChange() {
+                if (mstatus == 'Married')
+                        document.getElementById ('sname').disabled = false;
+                else
+                        document.getElementById ('sname').disabled = true;
+                }
+                function processForm() {
+                    var fName = document.getElementById ('fName').value;
+                    var lName = document.getElementById ('lName').value;
+                    var addy = document.getElementById ('addy').value;
+                    var addy2 = document.getElementById ('addy2').value;
+                    var city = document.getElementById ('city').value;
+                    var state = document.getElementById ('state').value;
+                    var zip = document.getElementById ('zip').value;
+                    var gender = document.getElementById ('gender').value;
+                    var dob = document.getElementById ('dob').value;
+                    var mstatus = document.getElementById ('mstatus').value;
+                    var sname = document.getElementById ('sname').value;
+                    var email = document.getElementById ('email').value;
+                    var phone = document.getElementById ('phone').value;
+                    var psw = document.getElementById ('psw').value;
+                    var cpsw = document.getElementById ('cpsw').value;
+
+                    var formGood = true;
+
+                    if (fName == "") {
+                     formGood = false;
+                     document.getElementById ('fName').className = 'redtext';
+                    } else {
+                     document.getElementById ('fName').className = 'blacktext';
+                    }
+
+                    if (lName == "") {
+                     formGood = false;
+                     document.getElementById ('lName').className = 'redtext';
+                    } else {
+                     document.getElementById ('lName').className = 'blacktext';
+                    }
+
+                    if (addy == "") {
+                     formGood = false;
+                     document.getElementById ('addy').className = 'redtext';
+                    } else {
+                     document.getElementById ('addy').className = 'blacktext';
+                    }
+
+                    if (addy2 == "") {
+                     formGood = false;
+                     document.getElementById ('addy2').className = 'redtext';
+                    } else {
+                     document.getElementById ('addy2').className = 'blacktext';
+                    }
+
+                    if (city == "") {
+                     formGood = false;
+                     document.getElementById ('city').className = 'redtext';
+                    } else {
+                     document.getElementById ('city').className = 'blacktext';
+                    }
+
+                    if (state == "") {
+                     formGood = false;
+                     document.getElementById ('state').className = 'redtext';
+                    } else {
+                     document.getElementById ('state').className = 'blacktext';
+                    }
+
+                    if (zip == "") {
+                     formGood = false;
+                     document.getElementById ('zip').className = 'redtext';
+                    } else {
+                     document.getElementById ('zip').className = 'blacktext';
+                    }
+
+                    if (gender == "") {
+                     formGood = false;
+                     document.getElementById ('gender').className = 'redtext';
+                    } else {
+                     document.getElementById ('gender').className = 'blacktext';
+                    }
+
+                    if (dob == "") {
+                     formGood = false;
+                     document.getElementById ('dob').className = 'redtext';
+                    } else {
+                     document.getElementById ('dob').className = 'blacktext';
+                    }
+
+                    if (mstatus == "") {
+                     formGood = false;
+                     document.getElementById ('mstatus').className = 'redtext';
+                    } else {
+                     document.getElementById ('mstatus').className = 'blacktext';
+                    }
+
+                    if (sname == "") {
+                     formGood = false;
+                     document.getElementById ('sname').className = 'redtext';
+                    } else {
+                     document.getElementById ('sname').className = 'blacktext';
+                    }
+
+                    if (email == "") {
+                     formGood = false;
+                     document.getElementById ('email').className = 'redtext';
+                    } else {
+                     document.getElementById ('email').className = 'blacktext';
+                    }
+
+                    if (phone == "") {
+                     formGood = false;
+                     document.getElementById ('phone').className = 'redtext';
+                    } else {
+                     document.getElementById ('phone').className = 'blacktext';
+                    }
+   
+                    if (psw != cpsw) {
+                        formGood = false;
+                            document.getElementById (psw).className = 'redtext';
+                            document.getElementById (cpsw).className = 'redtext';
+                    } else 
+                    {
+                        document.getElementById (psw).className = 'blacktext';
+                            document.getElementById (cpsw).className = 'blacktext';
+                    }
+
+                    if (formGood) {
+                            document.getElementById ("myForm").submit();
+                    } else {
+                            document.getElementById ("errorMsg").innerHTML = "Please fix the errors below";
+                    }                  
+
+
+            </script>
+
+</head>
