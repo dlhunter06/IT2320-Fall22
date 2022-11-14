@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8" />
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    </head>
+    <body>
+        
+        <button type="button" class="button">Start!</button>
+            <div class=" pic-frame">
+                <img id= "man" src="guy-walking.gif" style ="width:500px; height:400px;" />
+            </div>
+    </body>
+</html>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $('#man').hide();
+        $("button").click(function(){
+            $('#man').fadeIn("slow");
+            setInterval(function (){
+                $("#man").animate({
+                    marginLeft: '+=30px'
+                });
+            }, 10);
+        });
+    });
+</script>    
+
+<style>
+    .button {
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+ }
+
+
+.button:hover {
+  background-position: right center; 
+}
+</style>
