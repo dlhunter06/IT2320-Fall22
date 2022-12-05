@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather API</title>
+    <link rel="stylesheet" href="outside.css">
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#submit').click(function(){
+
+        var city = $('#city').val();
+
+        if(city != ''){
+
+            $.ajax({
+                url:"https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=9ecbec725eebaf88c06cd05a771b1f8d",
+                type: "GET",
+                dataType: "jsonp",
+                success: function(data){
+                    var widget = display(data);
+
+                    $("#display").html(widget);
+
+                    $("#city").val('');
+                }
+
+
+            });
+
+        }else{
+            $('#error').html('Please enter a city');
+        }
+    });
+});
+
+function display(data){
+    return "<h2 class='text-center'>Current Weather for " + data.name +", " + data.sys.country +"</h2>" +
+    "<h3><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
+    "<h3><strong>Current Condition</strong>: <img src='http://openweathermap.org/img/w/"+ data.weather[0].icon+".png'> "+ data.weather[0].description +"</h3>" +
+    "<h3><strong>Temperature</strong>: "+ data.main.temp +"&deg;F" +"</h3>" +
+    "<h3><strong>Wind Speed</strong>: "+ data.wind.speed + " mph " + "</h3>" +
+    "<h3><strong>Wind Direction</strong>: "+ data.wind.deg +"&deg;F" +"</h3>"  +
+    "<h3><strong>Humidity</strong>: "+ data.main.humidity +"%" +"</h3>"  +
+    "<h3><strong>Min. Temperature</strong>: "+ data.main.temp_min +"&deg;F" +"</h3>"  +
+    "<h3><strong>Max Temperature</strong>: "+ data.main.temp_max +"&deg;F" +"</h3>" ;
+}
+  
+</script>
+
+<styles>
+body {
+	margin: 0;
+	padding: 0;
+	background-image: url(https://cloudfront-us-east-1.images.arcpublishing.com/cmg/Z3QDZ44B2RERJIJGQDXT7Z2OEI.png);
+	background-size: cover;
+	background-position: 25% 75%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: azure;
+	font-family: 'Roboto', sans-serif;
+  }
+
+
+
+
+#rowDiv{
+	margin: auto;
+	text-align: center;
+	width: 100%;
+	height: 835px;
+}
+
+input[type="text"]{
+	height: 40px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+h2{
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.greeting{
+	margin: auto;
+	background-color: black;
+	padding: 10px;
+
+}
+
+.text-city{
+	margin: auto;
+	text-align: center;
+
+}
+
+.row-city{
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+
+}
+
+#display{
+	margin: auto;
+	padding: 15px;
+	height: 700px;
+	width: 350px;
+	border-radius: 25px;
+	color: black;
+	text-align: left;
+	background-color: antiquewhite;
+	opacity: 75%;
+}
+.footer-row{
+	background-color: black;
+	width: 100%;
+	height: 80%;
+}
+
+</styles>  
+  
+  
+<body>
+    <div class=" greeting">
+        <h2 class="text-center"> Check the Weather</h2>
+    </div>
+
+    <div class="container" id="rowDiv">
+        <div class="row">
+            <h3 class="text-city">Enter City</h3>
+            <span id="error"></span>
+        </div>
+
+        <div class="row-city" >
+            <input type="text" name="city" id="city" placeholder="Enter City Name">
+            <button id="submit" class="btn btn-primary">Search City</button>
+        </div>
+
+        <div id="display"></div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-row">
+                <p>Copyright &copy; WeatherApi</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
