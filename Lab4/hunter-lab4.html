@@ -184,6 +184,13 @@
             var formControl = input.parentElement;
             formControl.className = 'form-control success';
         }
+      
+      let btnReset = document.querySelector('#reset');
+        let input = document.querySelectorAll('input');
+
+        btnReset.addEventListener('click',()=>{
+           input.forEach(input.value='');
+        });
 
 
 </script>
