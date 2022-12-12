@@ -1,161 +1,411 @@
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="'UTF-8">
     <title>Lab 4 - Forms Processing</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">  
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <style>
         .blacktext {color: black;}
         .redtext {color:red;}
-    </style> 
-     
-     
-            <script>
-                "use strict"
+
+
+        body {background-color: cadetblue; align-items: center; display: flex; justify-content: center; }
+        .whole-form {background-color: white; border-radius: 5px;}
+        .form-control {margin-bottom: 10px; position: relative;}
+        td label {display: inline-block; margin-bottom: 5px; }
+        .form-control input { border: 2px solid #f0f0f0; border-radius: 4px; display: block; font-size: 14px;}
+        .form-control.success input { border-color: #2ecc71;}
+        .form-control.error input { border-color: #e74c3c;}
+        td i {  position: absolute; top: 40px; right: 10px; visibility: hidden;}
+        td small { visibility: hidden; position: absolute; bottom: 0; left: 0;}
+        .form-control.success i.fa-check-circle { color: #2ecc71; visibility: visible;}
+        .form-control.error i.fa-exclamation-circle { color:#e74c3c; visibility: visible;}
+
+
+
+    </style>
+
+
+    <script type="text/javascript">
+                "use strict";
                 //Add all Javascript event handlers here
-                onload section{
-                    document.getElementById("mstatus").onchange=mstatusChange();
-
-                    document.getElementById("myForm").onclick=processForm();
-
-                    document.getElementById("fName").focus();
 
 
-                }
+                var form = document.getElementById('myForm');
+                var fname = document.getElementById('fName');
+                var lname = document.getElementById('lName');
+                var addy = document.getElementById('addy');
+                var addy2 = document.getElementById('addy2');
+                var city = document.getElementById('city');
+                var state = document.getElementById('state');
+                var zip = document.getElementById('zip');
+                var dob = document.getElementById('dob');
+                var sname = document.getElementById('sname');
+                var email = document.getElementById('email');
+                var psw = document.getElementById('psw');
+                var cpsw = document.getElementById('cpsw');
 
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    processForm();
+                });
 
 
                 function mstatusChange() {
-                if (mstatus == 'Married')
+                    var mstatus = document.getElementById('mstatus').value;
+                if (mstatus.value == "Married")
                         document.getElementById ('sname').disabled = false;
                 else
                         document.getElementById ('sname').disabled = true;
                 }
+
+
+
+
                 function processForm() {
-                    var fName = document.getElementById ('fName').value;
-                    var lName = document.getElementById ('lName').value;
-                    var addy = document.getElementById ('addy').value;
-                    var addy2 = document.getElementById ('addy2').value;
-                    var city = document.getElementById ('city').value;
-                    var state = document.getElementById ('state').value;
-                    var zip = document.getElementById ('zip').value;
-                    var gender = document.getElementById ('gender').value;
-                    var dob = document.getElementById ('dob').value;
-                    var mstatus = document.getElementById ('mstatus').value;
-                    var sname = document.getElementById ('sname').value;
-                    var email = document.getElementById ('email').value;
-                    var phone = document.getElementById ('phone').value;
-                    var psw = document.getElementById ('psw').value;
-                    var cpsw = document.getElementById ('cpsw').value;
+                var errormessage = " ";
+                var pass = document.getElementById('psw').value;
+                var cpass = document.getElementById('cpsw').value;
+                var fname = document.getElementById('fName').value;
+                var lname = document.getElementById('lName').value;
+                var addy = document.getElementById('addy');
+                var addy2 = document.getElementById('addy2');
+                var city = document.getElementById('city');
+                var state = document.getElementById('state');
+                var zip = document.getElementById('zip');
+                var dob = document.getElementById('dob');
+                var sname = document.getElementById('sname');
+                var email = document.getElementById('email');
 
-                    var formGood = true;
 
-                    if (fName == "") {
-                     formGood = false;
-                     document.getElementById ('fName').className = 'redtext';
-                    } else {
-                     document.getElementById ('fName').className = 'blacktext';
+                    if(fname === ""){
+                        setErrorFor(fname, "enter your first name ");
+                    }
+                    else {
+                        setSuccessFor(fname);
                     }
 
-                    if (lName == "") {
-                     formGood = false;
-                     document.getElementById ('lName').className = 'redtext';
-                    } else {
-                     document.getElementById ('lName').className = 'blacktext';
+                    if(lName === ""){
+                        setErrorFor(lname, "enter your last name ");
+
+                    }
+                    else{
+                        setSuccessFor(lname);
                     }
 
-                    if (addy == "") {
-                     formGood = false;
-                     document.getElementById ('addy').className = 'redtext';
-                    } else {
-                     document.getElementById ('addy').className = 'blacktext';
+                    if(addy === ""){
+                        setErrorFor(addy, "enter your address");
+
+                    }
+                    else{
+                        setSuccessFor(addy);
                     }
 
-                    if (addy2 == "") {
-                     formGood = false;
-                     document.getElementById ('addy2').className = 'redtext';
-                    } else {
-                     document.getElementById ('addy2').className = 'blacktext';
+                    if(addy2 === ""){
+                        setErrorFor(addy2, "enter your suite or apt.#; N/A if napplicable");
+                    }
+                    else {
+                        setSuccessFor(addy2);
                     }
 
-                    if (city == "") {
-                     formGood = false;
-                     document.getElementById ('city').className = 'redtext';
-                    } else {
-                     document.getElementById ('city').className = 'blacktext';
+                    if(city === ""){
+                        setErrorFor(city, "enter your city");
+                    }
+                    else{
+                        setSuccessFor(city);
                     }
 
-                    if (state == "") {
-                     formGood = false;
-                     document.getElementById ('state').className = 'redtext';
-                    } else {
-                     document.getElementById ('state').className = 'blacktext';
+                    if(state === ""){
+                        setErrorFor(state, "select your state");
+                    }
+                    else{
+                        setSuccessFor(state);
                     }
 
-                    if (zip == "") {
-                     formGood = false;
-                     document.getElementById ('zip').className = 'redtext';
-                    } else {
-                     document.getElementById ('zip').className = 'blacktext';
+
+                    if(zip === ""){
+                        setErrorFor(zip, "enter your zip ");
+                    }
+                    else{
+                        setSuccessFor(zip);
                     }
 
-                    if (gender == "") {
-                     formGood = false;
-                     document.getElementById ('gender').className = 'redtext';
-                    } else {
-                     document.getElementById ('gender').className = 'blacktext';
+                    if(dob === ""){
+                        setErrorFor(dob, "enter your date of birth ");
+                    }
+                    else{
+                        setSuccessFor(dob);
                     }
 
-                    if (dob == "") {
-                     formGood = false;
-                     document.getElementById ('dob').className = 'redtext';
-                    } else {
-                     document.getElementById ('dob').className = 'blacktext';
+                    if(email === ""){
+                        setErrorFor(email, "enter your email");
+                    }
+                    else{
+                        setSuccessFor(email);
                     }
 
-                    if (mstatus == "") {
-                     formGood = false;
-                     document.getElementById ('mstatus').className = 'redtext';
-                    } else {
-                     document.getElementById ('mstatus').className = 'blacktext';
+                    if(phone === ""){
+                        setErrorFor(phone, "enter your phone number");
+                    }
+                    else{
+                        setSuccessFor(phone);
                     }
 
-                    if (sname == "") {
-                     formGood = false;
-                     document.getElementById ('sname').className = 'redtext';
-                    } else {
-                     document.getElementById ('sname').className = 'blacktext';
+                    if(psw === ""){
+                        setErrorFor(psw, "create a password");
+                    }
+                    else{
+                        setSuccessFor(psw);
                     }
 
-                    if (email == "") {
-                     formGood = false;
-                     document.getElementById ('email').className = 'redtext';
-                    } else {
-                     document.getElementById ('email').className = 'blacktext';
+                    if (psw != cpsw){
+                        setErrorFor(cpsw, "passwords do not match");
+                    }
+                    else{
+                        setSuccessFor(cpsw);
                     }
 
-                    if (phone == "") {
-                     formGood = false;
-                     document.getElementById ('phone').className = 'redtext';
-                    } else {
-                     document.getElementById ('phone').className = 'blacktext';
-                    }
-   
-                    if (psw != cpsw) {
-                        formGood = false;
-                            document.getElementById (psw).className = 'redtext';
-                            document.getElementById (cpsw).className = 'redtext';
-                    } else 
-                    {
-                        document.getElementById (psw).className = 'blacktext';
-                            document.getElementById (cpsw).className = 'blacktext';
-                    }
+                }
+        function setErrorFor(input, message){
+            var formControl = input.parentElement; //form-control
+            var small = formControl.querySelector('small');
 
-                    if (formGood) {
-                            document.getElementById ("myForm").submit();
-                    } else {
-                            document.getElementById ("errorMsg").innerHTML = "Please fix the errors below";
-                    }                  
+            //addition of error message
+            small.innerText = message;
+
+            //addition of error class
+            formControl.className = 'form-control error';
+
+        }
+
+        function setSuccessFor(input){
+            var formControl = input.parentElement;
+            formControl.className = 'form-control success';
+        }
 
 
-            </script>
+</script>
 
 </head>
+  <body>
+    <div class="whole-form">
+        <h1>Lab 4 - Forms Processing</h1>
+
+        <h3><span id="errorMsg" class="redtext"></span></h3>
+    <form id="myForm" action="https://waynedog.net/formreader.php" method="post">
+        <div class="icon">
+            <i class="fas fa-user-circle"></i>
+        </div>
+
+     <table>
+        <colgroup>
+            <col span="2" style="background-color:white">
+          </colgroup>
+    <div class = "form-control success">
+        <tr>
+            <td><label for="fName" class="blacktext"><strong>First Name</strong></label></td>
+            <td><input type="text"  id="fName" name="fName" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+            <td><label for="lName" class="blacktext"><strong>Last Name</strong></label></td>
+            <td><input type="text"  id="lName" name="lName" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+        </tr>
+    </div>
+
+    <div class = "form-control error">
+        <tr>
+            <td><label for="addy" class="blacktext"><strong>Address</strong></label></td>
+            <td><input type="text" id="addy" name="addy" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+            <td><label for="addy2" class="blacktext"><strong>Suite or Apt. #</strong></label></td>
+            <td><input type="text" id="addy2" name="addy2" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+
+    </div>
+
+    <div class = "form-control">
+        <tr>
+           <td><label for="city" class="blacktext"><strong>City</strong></label></td>
+            <td><input type="text" id="city" name="city" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+            <td><label for="state" class="blacktext"><strong>State</strong></label></td>
+            <td><select name="state" id="state" required>
+                <option value=""></option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">Dist of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+    </div>
+
+
+    <div class = "form-control">
+        <tr>
+            <td><label for="zip" class="blacktext"><strong>Zip Code</strong></label></td>
+            <td><input type="text" id="zip" name="zip" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+    </div>
+
+    <div class = "form-control">
+        <tr>
+            <td><label for="gender" class="blacktext"><strong>Gender: </strong></label></td>
+
+            <td><input type="radio" name="gender" id="female" value="Female" required>Female
+            <input type="radio" name="gender" id="male" value="Male" required> Male </td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+            <td><label for="dob" class="blacktext"><strong>Birthdate</strong></label></td>
+            <td><input type="date" id="dob" name="dob" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+    </div>
+
+    <div class = "form-control">
+        <tr>
+           <td><label for="mstatus" class="blacktext"><strong>Marital Status</strong></label></td>
+            <td><select name="mstatus" id="mstatus" onchange="mstatusChange()" required>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+            </select></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+            <td><label for="sname" class="blacktext"><strong>Spouse Name</strong></label></td>
+            <td><input type="text" id="sname" name="sname" disabled></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+    </div>
+
+
+    <div class = "form-control">
+        <tr>
+            <td><label for="email" class="blacktext"><strong>Email</strong></label></td>
+            <td><input type="email" id="email" name="email" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+
+            <td><label for="phone" class="blacktext"><strong>Phone</strong></label></td>
+            <td><input type="text" id="phone" name="phone" required></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+    </div>
+
+
+
+    <div class = "form-control">
+        <tr>
+            <td><label for="psw" class="blacktext"><strong>Password</strong></label></td>
+            <td><input type="password" id="psw" name="psw" required></table></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+
+
+            <td><label for="cpsw" class="blacktext"><strong>Confirm Password</strong></label></td>
+            <td><input type="password" id="cpsw" name="cpsw" required></table></td>
+            <td><i class="fas fa-check-circle"></i></td>
+            <td><i class="fas fa-exclamation-circle"></i></td>
+            <td><small>Error Message</small></td>
+        </tr>
+
+
+
+        <tr>
+            <td><button type="button" id="reset"><strong>Reset</strong></button></td>
+
+            <td><button type="submit"  id="submit"><strong>Submit</strong></td>
+        </tr>
+    </div>
+     </table>
+
+    </form>
+
+
+
+
+
+</div>
+</body>
+</html>
