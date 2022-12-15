@@ -1,0 +1,70 @@
+<html>
+<head>
+<h1> Prime Numbers and GCD</h1>
+<script = "text/javascript">
+
+function isPrime() {
+
+var i = 1;
+var num = document.getElementById("number").value;
+  
+while (i < num)
+  {
+    let j = i+1;
+    let prime = true;
+    for (let k = 2; k < j; k++)
+      {
+        if (j%k === 0 && j !== k){
+          prime = false;
+           break;
+        }
+       
+      }
+	if (prime){
+	alert(j + " is a prime number.");
+	} else {
+	 alert(j + " is a composite number.");
+	}
+	i++;
+   }
+}
+	
+function calculateGCD(a,b) {
+  var a = document.getElementById("num1").value;
+  var b = document.getElementById("num2").value;
+  
+  while(a && b){
+    [a,b] = [b, a%b]
+  }
+  if(!a) {
+    alert (b + " is the greatest common divisor. ");
+  } else {
+    if(!b) alert (a + " is the greatest common divisor. ");
+  }
+  
+} 
+  
+function recursiveMethod(a,b){
+  if(!a) return b;
+  if(!b) return a;
+  return recursiveMethod(b, a%b)
+}
+</script>
+</head>
+
+<body bgcolor="green">
+Enter a number: <input type = "number" id = "number">
+<button onclick="isPrime()"> Check if Prime</button>
+
+  <br>
+  <br>
+  <br>
+  
+  <h2> Calculate GCD</h2>
+  Enter number 1: <input type = "number" id = "num1">
+  Enter number 2: <input type = "number" id = "num2">
+  <button onclick= "calculateGCD()"> Calculate the Greatest Common Denominator</button>
+  <p id="gCD"></p>
+</body>
+
+</html>
