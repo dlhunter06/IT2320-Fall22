@@ -1,0 +1,36 @@
+<html>
+<head>
+    <script type="text/javascript">
+        function buildArray(){
+            var input = document.getElementById("dataEntered").value;
+            document.getElementById("results").innerHTML = input.split(" ");
+    };
+     
+function sortArray(){
+ const order = document.getElementById("dataEntered").value;
+ const sortOrder = order.value.split(" ").sort().join(" ");
+  order.value = sortOrder;
+};  
+  
+  function reverseArray() {
+    const revArray = document.getElementById("dataEntered").value;
+      document.getElementId("results").innerHTML = revArray.reverse();
+  }
+  
+  
+     
+  </script>
+</head>
+<body>
+<h2>Lab 11</h2>
+Enter a string: <input type="text" id="dataEntered">
+<button type="button" id="btnSubmit" onclick="buildArray()">Submit</button>
+<br /><br />
+Search for this: <input type="text" id="search">
+<button type="button" onclick="searchArray(arr)">Search</button>
+<br /><br />
+<button type="button" id="sort" onclick="sortArray()">Sort the Array</button> <button type="button" id="reverse" onclick="reverseArray()">Reverse the Array</button>
+<br /><br />
+<strong>My Array Output</strong><br/>
+<span id="results"> </span>
+</body></html>
